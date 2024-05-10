@@ -87,6 +87,11 @@ app.get("/top-fossils", (req, res) => {
   }
 });
 
+app.post("/like-fossil", (req, res) => {
+  MOST_LIKED_FOSSILS[req.body["fossil-select"]].num_likes += 1;
+  res.render("thank-you.html", { name: req.session.username });
+});
+
 app.get("/random-fossil.json", (req, res) => {
   const randomFossil = lodash.sample(OTHER_FOSSILS);
   res.json(randomFossil);

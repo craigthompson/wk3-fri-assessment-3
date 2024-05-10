@@ -9,6 +9,7 @@ block body %}
 </div>
 {% endfor %}
 <form action="/like-fossil" method="post">
+  <label for="fossil-select">What fossil do you like?</label>
   <select name="fossil-select" id="like-fossil-select">
     {% for fossil, values in fossils %}
     <option value="{{ fossil }}">{{ values.name }}</option>
