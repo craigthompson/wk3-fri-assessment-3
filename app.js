@@ -79,7 +79,7 @@ app.get("/get-name", (req, res) => {
 app.get("/top-fossils", (req, res) => {
   if (req.session.username) {
     res.render("top-fossils.html", {
-      fossils: Object.values(MOST_LIKED_FOSSILS),
+      fossils: MOST_LIKED_FOSSILS,
       name: req.session.username,
     });
   } else {

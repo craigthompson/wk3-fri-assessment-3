@@ -1,10 +1,19 @@
 {% extends 'base.html' %} {% block title %} Most Liked Fossils {% endblock %} {%
 block body %}
 <h1>Welcome, {{ name }}</h1>
-{% for fossil in fossils %}
+{% for fossil, values in fossils %}
 <div class="fossil-div">
-  <h3>{{ name }}, this is a {{ fossil.name }}</h3>
-  <h2>Liked {{ fossil.num_likes }} times.</h2>
-  <img src="{{ fossil.img }}" />
+  <h3>{{ name }}, this is a {{ values.name }}</h3>
+  <h2>Liked {{ values.num_likes }} times.</h2>
+  <img src="{{ values.img }}" />
 </div>
-{% endfor %} {% endblock %}
+{% endfor %}
+<form action="/like-fossil" method="post">
+  <select name="fossil-select" id="like-fossil-select">
+    {% for fossil, values in fossils %}
+    <option value="{{ fossil }}">{{ values.name }}</option>
+    {% endfor %}
+  </select>
+  <input type="submit" />
+</form>
+{% endblock %}
