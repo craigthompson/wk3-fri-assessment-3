@@ -63,7 +63,6 @@ const OTHER_FOSSILS = [
 ];
 
 app.get("/", (req, res) => {
-  req.session.destroy();
   if (req.session.username) {
     res.redirect("/top-fossils");
   } else {
