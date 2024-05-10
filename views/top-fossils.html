@@ -8,13 +8,15 @@ block body %}
   <img src="{{ values.img }}" />
 </div>
 {% endfor %}
-<form action="/like-fossil" method="post">
-  <label for="fossil-select">What fossil do you like?</label>
-  <select name="fossil-select" id="like-fossil-select">
-    {% for fossil, values in fossils %}
-    <option value="{{ fossil }}">{{ values.name }}</option>
-    {% endfor %}
-  </select>
-  <input type="submit" />
-</form>
+<div>
+  <form action="/like-fossil" method="post">
+    <label for="fossil-select">What fossil do you like?</label>
+    <select name="fossil-select" id="like-fossil-select">
+      {% for fossil, values in fossils %}
+      <option value="{{ fossil }}">{{ values.name }}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" />
+  </form>
+</div>
 {% endblock %}

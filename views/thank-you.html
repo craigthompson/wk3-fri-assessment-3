@@ -1,5 +1,8 @@
 {% extends 'base.html' %} {% block title %} Thank You {% endblock %} {% block
-body %}
-<h2>Thank you, {{ name }}.</h2>
+body %} {% if name %}
+<h2>Thank you, {{ name }}</h2>
 <a href="/top-fossils">Back to Top Fossils</a>
-{% endblock %}
+{% else %}
+<h2>Thank you</h2>
+<a href="/">Back to Home Page</a>
+{% endif %} {% endblock %}

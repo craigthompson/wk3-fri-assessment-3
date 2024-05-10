@@ -102,7 +102,8 @@ app.post("/like-fossil", (req, res) => {
 });
 
 app.post("/random-fossil.json", (req, res) => {
-  // Callback function gets a random fossil that isn't the currently passed fossil in the request.
+  // Callback function gets a random fossil that isn't the currently passed in fossil from the request.
+  //  This way every click of the get random fossil button will get a different random fossil than before.
   let randomFossil = lodash.sample(OTHER_FOSSILS);
   while (randomFossil.name === req.body.currentFossilName) {
     randomFossil = lodash.sample(OTHER_FOSSILS);
