@@ -4,6 +4,7 @@ import lodash from "lodash";
 import morgan from "morgan";
 import nunjucks from "nunjucks";
 import ViteExpress from "vite-express";
+import bodyParser from "body-parser";
 
 const app = express();
 const port = "8000";
@@ -14,11 +15,16 @@ app.use(express.static("public"));
 app.use(
   session({ secret: "ssshhhhh", saveUninitialized: true, resave: false })
 );
+app.use(bodyParser.json());
 
 nunjucks.configure("views", {
   autoescape: true,
   express: app,
 });
+
+////////////////////////////////////////////////
+//  Data Objects
+////////////////////////////////////////////////
 
 const MOST_LIKED_FOSSILS = {
   aust: {
@@ -62,6 +68,9 @@ const OTHER_FOSSILS = [
   },
 ];
 
+////////////////////////////////////////////////
+//  Routes
+////////////////////////////////////////////////
 app.get("/", (req, res) => {
   if (req.session.username) {
     res.redirect("/top-fossils");
@@ -92,8 +101,12 @@ app.post("/like-fossil", (req, res) => {
   res.render("thank-you.html", { name: req.session.username });
 });
 
-app.get("/random-fossil.json", (req, res) => {
-  const randomFossil = lodash.sample(OTHER_FOSSILS);
+app.post("/random-fossil.json", (req, res) => {
+  // Callback function gets a random fossil that isn't the currently passed fossil in the request.
+  let randomFossil = lodash.sample(OTHER_FOSSILS);
+  while (randomFossil.name === req.body.currentFossilName) {
+    randomFossil = lodash.sample(OTHER_FOSSILS);
+  }
   res.json(randomFossil);
 });
 
