@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "nodemon app.js -w app.js -w src -w public -w views -e html,css,js --delay 2.5",
+    "dev": "nodemon app.js -w app.js -w src -w public -w views -e html,css,js --delay 0.5",
     "build": "vite build",
     "preview": "vite preview"
   },
